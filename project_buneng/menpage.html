@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Velora - Demo</title>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="homepaeD.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="brand">Velora</div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="homepageD.html">Home</a>
+        <a href="menbaju.html">Men</a>
+        <a href="womenpage.html">Women</a>
+        <a href="#">Accessories</a>
+      </nav>
+
+      <div class="icons" aria-hidden="true">
+        <button class="icon" title="account">👤</button>
+        <button class="icon" title="cart">🛒</button>
+      </div>
+    </header>
+
+    <!-- Latest Collection -->
+    <section>
+      <h2 class="section-title">Top Clothes</h2>
+
+      <div class="slider" id="slider">
+        <button class="nav-btn nav-left" id="prev" aria-label="previous">‹</button>
+        <div class="slides" id="slides">
+          <!-- Card 1 -->
+          <div class="card">
+            <img src="1.jpg" alt ="Product 1">
+            <div class="title">Product 1</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card">
+            <img src="2.jpg" alt="Product 2">
+            <div class="title">Product 2</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card">
+            <img src="3.jpg" alt="Product 3">
+            <div class="title">Product 3</div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="card">
+            <img src="4.jpg" alt="Product 4">
+            <div class="title">Product 4</div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="card">
+            <img src="5.jpg" alt="Product 5">
+            <div class="title">Product 5</div>
+          </div>
+
+        </div>
+    
+        <section>
+        <h2 class="section-title">Shorts</h2>
+
+        <div class="slider" id="slider">
+            
+            <div class="slides" id="slides">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="1.jpg" alt ="Product 1">
+                <div class="title">Product 1</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="2.jpg" alt="Product 2">
+                <div class="title">Product 2</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="3.jpg" alt="Product 3">
+                <div class="title">Product 3</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <img src="4.jpg" alt="Product 4">
+                <div class="title">Product 4</div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <img src="5.jpg" alt="Product 5">
+                <div class="title">Product 5</div>
+            </div>
+
+            </div>
+      </div>
+
+      <div class="dots" id="dots" role="tablist" aria-label="slider dots"></div>
+    </section>
+  </div>
+
+  <script>
+    // Simple responsive slider logic (no external libs)
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const items = Array.from(slidesEl.children);
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const dotsContainer = document.getElementById('dots');
+
+      let currentIndex = 0;
+      const visible = () => {
+        const w = window.innerWidth;
+        if (w >= 1100) return 4;
+        if (w >= 900) return 3;
+        if (w >= 640) return 2;
+        return 1;
+      };
+
+      function update(){
+        const v = visible();
+        const cardWidth = items[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(slidesEl).gap) || 20;
+        const shift = (cardWidth + gap) * currentIndex;
+        slidesEl.style.transform = 'translateX(-${shift}px)';
+        updateDots();
+      }
+
+      function prevSlide(){
+        currentIndex = Math.max(0, currentIndex - 1);
+        update();
+      }
+      function nextSlide(){
+        const maxIndex = Math.max(0, items.length - visible());
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        update();
+      }
+
+      // Dots
+      function createDots(){
+        dotsContainer.innerHTML = '';
+        const pages = Math.max(1, items.length - visible() + 1);
+        for(let i=0;i<pages;i++){
+          const d = document.createElement('div');
+          d.className = 'dot' + (i===0 ? ' active' : '');
+          d.dataset.idx = i;
+          d.addEventListener('click', ()=> { currentIndex = i; update(); });
+          dotsContainer.appendChild(d);
+        }
+      }
+      function updateDots(){
+        const dots = Array.from(dotsContainer.children);
+        dots.forEach(d => d.classList.toggle('active', Number(d.dataset.idx) === currentIndex));
+      }
+
+      // events
+      prev.addEventListener('click', prevSlide);
+      next.addEventListener('click', nextSlide);
+      window.addEventListener('resize', ()=> {
+        currentIndex = Math.min(currentIndex, Math.max(0, items.length - visible()));
+        createDots();
+        update();
+      });
+
+      // init
+      createDots();
+      setTimeout(update, 50);
+    })();
+  </script>
+</body>
+</html>
+</body>
+</html>

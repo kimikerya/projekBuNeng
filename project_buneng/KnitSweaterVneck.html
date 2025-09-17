@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>T-shirt with white stripe - Velora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="homepaeD.css">
+  <style>
+    .product-detail {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    .product-detail img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product-info h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      font-weight: 600;
+    }
+    .colors {
+      margin: 20px 0;
+      display: flex;
+      gap: 12px;
+    }
+    .color-option {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #ccc;
+    }
+    .color-option.active {
+      border: 2px solid #000;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      background: #446592;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="brand">Velora</div>
+    </div>
+    <nav>
+      <a href="homepageD.html">Home</a>
+      <a href="menpage.html">Men</a>
+      <a href="womenpage.html">Women</a>
+      <a href="accesories.html">Accessories</a>
+    </nav>
+    <div class="icons">
+      <button class="icon">👤</button>
+      <button class="icon">🛒</button>
+    </div>
+  </header>
+
+  <main class="product-detail">
+    <div class="product-image">
+      <img id="main-img" src="s.jpg" alt="Rugby Shirt">
+    </div>
+    <div class="product-info">
+      <h2>T-shirt with white stripe</h2>
+      <p>Casual rugby shirt dengan bahan nyaman untuk gaya sehari-hari.</p>
+      <h4>Pilih Warna:</h4>
+      <div class="colors">
+        <div class="color-option active" style="background:red;" data-img="rugby-red.jpg"></div>
+        <div class="color-option" style="background:blue;" data-img="rugby-blue.jpg"></div>
+        <div class="color-option" style="background:green;" data-img="rugby-green.jpg"></div>
+      </div>
+      <button class="btn">Tambah ke Keranjang 🛒</button>
+    </div>
+  </main>
+
+  <script>
+    const mainImg = document.getElementById("main-img");
+    const options = document.querySelectorAll(".color-option");
+
+    options.forEach(opt => {
+      opt.addEventListener("click", () => {
+        options.forEach(o => o.classList.remove("active"));
+        opt.classList.add("active");
+        mainImg.src = opt.dataset.img; // ganti gambar sesuai warna
+      });
+    });
+  </script>
+</body>
+</html>

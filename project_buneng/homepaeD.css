@@ -44,7 +44,7 @@ header {
   gap: 12px;
 }
 .logo .brand {
-  font-family: "Playfair Display", serif;
+  font-family: "Qwitcher Grypen", serif;
   font-size: 34px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -130,6 +130,7 @@ nav a {
   padding: 8px 0;
 }
 .card {
+  text-decoration: none;
   min-width: 220px;
   border-radius: 6px;
   box-shadow: 0 6px 18px rgba(20, 20, 20, 0.06);
@@ -162,21 +163,22 @@ nav a {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(148, 49, 49, 0.06);
+  background: rgb(255, 255, 255);
   display: grid;
   place-items: center;
   cursor: pointer;
   border: 0;
+  z-index: 5; /* biar nggak ketiban card */
 }
-.nav-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
+
 .nav-left {
-  left: 6px;
+  left: 10px; /* keluar dari area card */
 }
+
 .nav-right {
-  right: 6px;
+  right: 10px; /* keluar dari area card */
 }
+
 
 /* small dots */
 .dots {
